@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.jag.helloworld.BluetoothActivity">
+    <item
+        android:id="@+id/action_tracker"
+        android:orderInCategory="1"
+        android:title="@string/action_tracker"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_device_list"
+        android:orderInCategory="100"
+        android:title="@string/action_device_list"
+        app:showAsAction="never" />
+
+</menu>

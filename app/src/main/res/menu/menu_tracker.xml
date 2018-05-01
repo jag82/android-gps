@@ -1,15 +1,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.jag.helloworld.MainActivity">
+    tools:context="com.example.jag.helloworld.TrackerActivity">
+    <item
+        android:id="@+id/action_bluetooth"
+        android:orderInCategory="1"
+        android:title="@string/action_bluetooth"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_spots"
         android:orderInCategory="100"
         android:title="@string/action_spotter"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
     <item
-        android:id="@+id/action_reset"
+        android:id="@+id/action_reset_spots"
         android:orderInCategory="200"
-        android:title="@string/action_reset"
+        android:title="@string/action_reset_spots"
         app:showAsAction="never" />
 </menu>

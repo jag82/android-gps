@@ -1,10 +1,17 @@
 <resources>
-    <string name="app_name">Artimus Prime</string>
+    <string name="app_name">Starball</string>
 
-    <string name="activity_main">Tracking</string>
+    <string name="activity_tracker">Tracking</string>
     <string name="activity_spotter">Spots</string>
+    <string name="activity_device_list">Device List</string>
+    <string name="activity_bluetooth">Bluetooth</string>
 
+    <string name="action_tracker">Tracker</string>
     <string name="action_spotter">Spots</string>
-    <string name="action_reset">Reset</string>
+    <string name="action_device_list">Devices</string>
+    <string name="action_bluetooth">Bluetooth</string>
+    <string name="action_reset_spots">Reset Spots</string>
+
+    <string name="none_paired">No paired devices</string>
 
 </resources>

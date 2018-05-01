@@ -16,12 +16,12 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Locale;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+//GPS tracking of predefined "spots"
+public class TrackerActivity extends AppCompatActivity {
 
     Context ctx;
 
@@ -40,10 +40,11 @@ public class MainActivity extends AppCompatActivity {
     double yMin = Double.MAX_VALUE;
     double yMax = Double.MIN_VALUE;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_tracker);
 
         this.ctx = this;
 
@@ -99,11 +100,13 @@ public class MainActivity extends AppCompatActivity {
         tts.setLanguage(Locale.CANADA);
 
         gps.startListening();
+
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_tracker, menu);
         return true;
     }
 
@@ -116,7 +119,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             return true;
         }
-        if (id == R.id.action_reset) {
+        if (id == R.id.action_bluetooth) {
+            Intent intent = new Intent(this, BluetoothActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        if (id == R.id.action_reset_spots) {
             SharedPreferences prefs = getSharedPreferences("spots", Context.MODE_PRIVATE);
             prefs.edit().clear().commit();
             return true;
@@ -153,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
         drawNearestSpot(location);
 
         if(currentPos == null) {
-            currentPos = new ImageView(MainActivity.this);
+            currentPos = new ImageView(TrackerActivity.this);
             currentPos.setImageResource(android.R.drawable.ic_menu_mapmode);
             mapView.addView(currentPos);
         }
@@ -191,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
 
         for(Map.Entry<String,?> entry : map.entrySet()) {
             spot = Spot.fromString(entry.getValue().toString());
-            img = new ImageView(MainActivity.this);
+            img = new ImageView(TrackerActivity.this);
             img.setImageResource(android.R.drawable.btn_star);
 
             img.setX(calcX(spot.lng));
@@ -224,7 +232,7 @@ public class MainActivity extends AppCompatActivity {
         textLatLng.setText(nearestDistance + "m");
         if(nearestSpot != null && nearestDistance < 20) {
             if(nearestSpotView == null) {
-                nearestSpotView = new ImageView(MainActivity.this);
+                nearestSpotView = new ImageView(TrackerActivity.this);
                 nearestSpotView.setImageResource(android.R.drawable.ic_dialog_map);
                 mapView.addView(nearestSpotView);
             }
