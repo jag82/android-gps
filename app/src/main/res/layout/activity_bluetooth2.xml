@@ -23,41 +23,48 @@
 
 
     <TextView
-        android:id="@+id/text"
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="text1" />
+        android:hint="textView" />
 
-    <TextView
-        android:id="@+id/text2"
+    <EditText
+        android:id="@+id/editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="text2" />
-
-    <TextView
-        android:id="@+id/text3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="text3" />
-
-    <TextView
-        android:id="@+id/text4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="text4" />
+        android:hint="editText" />
 
     <Button
-        android:id="@+id/btnOn"
+        android:id="@+id/btnStart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/font_large"
-        android:text="ON" />
+        android:onClick="onClickStart"
+        android:text="Start" />
 
     <Button
-        android:id="@+id/btnOff"
+        android:id="@+id/btnSend"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/font_large"
-        android:text="OFF" />
+        android:onClick="onClickSend"
+        android:text="Send" />
+
+
+    <Button
+        android:id="@+id/btnClear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/font_large"
+        android:onClick="onClickClear"
+        android:text="Clear" />
+
+    <Button
+        android:id="@+id/btnStop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/font_large"
+        android:onClick="onClickStop"
+        android:text="Stop" />
 
 </LinearLayout>
