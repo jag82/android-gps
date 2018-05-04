@@ -30,6 +30,7 @@ public class BluetoothActivity extends AppCompatActivity {
 
     private final String DEVICE_ADDRESS="98:D3:31:80:36:99";
 //    private final String DEVICE_ADDRESS="20:13:10:15:33:66";
+
     private final UUID PORT_UUID = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");//Serial Port Service ID
     private BluetoothDevice device;
     private BluetoothSocket socket;
@@ -43,10 +44,15 @@ public class BluetoothActivity extends AppCompatActivity {
     byte buffer[];
     int bufferPosition;
     boolean stopThread;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bluetooth2);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         startButton = (Button) findViewById(R.id.btnStart);
         sendButton = (Button) findViewById(R.id.btnSend);
         clearButton = (Button) findViewById(R.id.btnClear);
@@ -55,6 +61,32 @@ public class BluetoothActivity extends AppCompatActivity {
         textView = (TextView) findViewById(R.id.textView);
         setUiEnabled(false);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_bluetooth, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_device_list) {
+            Intent intent = new Intent(this, DeviceListActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        if (id == R.id.action_tracker) {
+            Intent intent = new Intent(this, TrackerActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+
+
+        return super.onOptionsItemSelected(item);
     }
 
     public void setUiEnabled(boolean bool)
@@ -168,7 +200,7 @@ public class BluetoothActivity extends AppCompatActivity {
                             handler.post(new Runnable() {
                                 public void run()
                                 {
-                                    textView.append(string);
+                                    textView.setText(string);
                                 }
                             });
 
@@ -189,11 +221,12 @@ public class BluetoothActivity extends AppCompatActivity {
         String string = editText.getText().toString();
         string.concat("\n");
         try {
-            outputStream.write(string.getBytes());
+//            outputStream.write(string.getBytes());
+            outputStream.write(0);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        textView.append("\nSent Data:"+string+"\n");
+        textView.setText("\nSent Data:"+string+"\n");
 
     }
 
@@ -209,6 +242,14 @@ public class BluetoothActivity extends AppCompatActivity {
 
     public void onClickClear(View view) {
         textView.setText("");
+    }
+    public void onClickOn(View view) {
+        editText.setText("1");
+        sendButton.callOnClick();
+    }
+    public void onClickOff(View view) {
+        editText.setText("0");
+        sendButton.callOnClick();
     }
 }
 
